@@ -25,6 +25,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-amqp")
 	implementation("org.springframework.boot:spring-boot-starter-flyway")
 	implementation("org.springframework.boot:spring-boot-starter-jooq")
+	implementation("org.jooq:jooq:3.21.4")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.cloud:spring-cloud-stream")
 	implementation("org.springframework.cloud:spring-cloud-stream-binder-rabbit")
@@ -82,7 +83,12 @@ jooq {
 
 		generator {
 			database {
-				includes = ".*"
+				includes = "orders"
+			}
+
+			target {
+				packageName = "xyz.grazen.restaurant.infrastructure.jooq"
+				directory = "src/main/java"
 			}
 		}
 	}
