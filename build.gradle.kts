@@ -68,12 +68,16 @@ buildscript {
     }
 }
 
+var dbUrl = "jdbc:postgresql://${System.getenv("DB_HOST")}:${System.getenv("DB_PORT")}/${System.getenv("DB_NAME")}"
+var dbUser = System.getenv("DB_USER")
+var dbPass = System.getenv("DB_PASSWORD")
+
 jooq {
 	configuration {
 		jdbc {
-			url = "jdbc:postgresql://localhost:5432/postgres"
-			user = "postgres"
-			password = "123"
+			url = dbUrl
+			user = dbUser
+			password = dbPass
 		}
 
 		generator {
@@ -85,8 +89,8 @@ jooq {
 }
 
 flyway {
-	url = "jdbc:postgresql://localhost:5432/postgres"
-    user = "postgres"
-	password = "123"
+	url = dbUrl
+	user = dbUser
+	password = dbPass
 	cleanDisabled = false
 }
