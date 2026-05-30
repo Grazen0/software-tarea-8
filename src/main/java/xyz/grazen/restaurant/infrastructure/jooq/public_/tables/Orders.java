@@ -4,6 +4,7 @@
 package xyz.grazen.restaurant.infrastructure.jooq.public_.tables;
 
 
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.UUID;
@@ -66,6 +67,11 @@ public class Orders extends TableImpl<OrdersRecord> {
      * The column <code>public.orders.restaurant_code</code>.
      */
     public final TableField<OrdersRecord, String> RESTAURANT_CODE = createField(DSL.name("restaurant_code"), SQLDataType.VARCHAR.nullable(false), this, "");
+
+    /**
+     * The column <code>public.orders.total</code>.
+     */
+    public final TableField<OrdersRecord, BigDecimal> TOTAL = createField(DSL.name("total"), SQLDataType.NUMERIC.nullable(false), this, "");
 
     /**
      * The column <code>public.orders.created_at</code>.

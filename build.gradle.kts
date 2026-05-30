@@ -4,6 +4,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.1.7"
 	id("org.jooq.jooq-codegen-gradle") version "3.21.4"
 	id("org.flywaydb.flyway") version "12.6.2"
+	id("jacoco")
 }
 
 group = "xyz.grazen"
@@ -27,21 +28,22 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-jooq")
 	implementation("org.jooq:jooq:3.21.4")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
-	implementation("org.springframework.cloud:spring-cloud-stream")
-	implementation("org.springframework.cloud:spring-cloud-stream-binder-rabbit")
 	implementation("org.flywaydb:flyway-database-postgresql")
 	compileOnly("org.projectlombok:lombok")
 	runtimeOnly("org.postgresql:postgresql")
 	annotationProcessor("org.projectlombok:lombok")
+
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-amqp-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-flyway-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-jooq-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-validation-test")
+	testImplementation("org.springframework.boot:spring-boot-webmvc-test")
 	testImplementation("org.springframework.boot:spring-boot-testcontainers")
-	testImplementation("org.springframework.cloud:spring-cloud-stream-test-binder")
 	testImplementation("org.testcontainers:testcontainers-junit-jupiter")
 	testImplementation("org.testcontainers:testcontainers-postgresql")
 	testImplementation("org.testcontainers:testcontainers-rabbitmq")
+	testImplementation("org.mockito:mockito-core")
 	testCompileOnly("org.projectlombok:lombok")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	testAnnotationProcessor("org.projectlombok:lombok")
@@ -102,4 +104,25 @@ flyway {
 	user = dbUser
 	password = dbPass
 	cleanDisabled = false
+}
+
+tasks.jacocoTestCoverageVerification {
+	violationRules {
+		rule {
+			limit { minimum = 0.85.toBigDecimal() }
+		}
+	}
+}
+
+tasks.jacocoTestReport {
+	dependsOn(tasks.test)
+	reports {
+		xml.required = true
+		html.required = true // sure
+	}
+	classDirectories.setFrom(
+		sourceSets.main.get().output.asFileTree.matching {
+			exclude("**/infrastructure/jooq/**")
+		}
+	)
 }

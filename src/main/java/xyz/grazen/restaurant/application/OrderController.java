@@ -30,7 +30,7 @@ public class OrderController {
 
     @PostMapping
     public OrderResponseDto createOrder(@Valid @RequestBody CreateOrderDto dto) {
-        Order order = orderService.createOrder(dto.clientId(), dto.restaurantCode());
+        Order order = orderService.placeOrder(dto.clientId(), dto.restaurantCode(), dto.total(), dto.cardId());
         return new OrderResponseDto(order);
     }
 }

@@ -4,6 +4,7 @@
 package xyz.grazen.restaurant.infrastructure.jooq.public_.tables.records;
 
 
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
@@ -64,17 +65,31 @@ public class OrdersRecord extends UpdatableRecordImpl<OrdersRecord> {
     }
 
     /**
+     * Setter for <code>public.orders.total</code>.
+     */
+    public void setTotal(BigDecimal value) {
+        set(3, value);
+    }
+
+    /**
+     * Getter for <code>public.orders.total</code>.
+     */
+    public BigDecimal getTotal() {
+        return (BigDecimal) get(3);
+    }
+
+    /**
      * Setter for <code>public.orders.created_at</code>.
      */
     public void setCreatedAt(OffsetDateTime value) {
-        set(3, value);
+        set(4, value);
     }
 
     /**
      * Getter for <code>public.orders.created_at</code>.
      */
     public OffsetDateTime getCreatedAt() {
-        return (OffsetDateTime) get(3);
+        return (OffsetDateTime) get(4);
     }
 
     // -------------------------------------------------------------------------
@@ -100,12 +115,13 @@ public class OrdersRecord extends UpdatableRecordImpl<OrdersRecord> {
     /**
      * Create a detached, initialised OrdersRecord
      */
-    public OrdersRecord(UUID id, UUID clientId, String restaurantCode, OffsetDateTime createdAt) {
+    public OrdersRecord(UUID id, UUID clientId, String restaurantCode, BigDecimal total, OffsetDateTime createdAt) {
         super(Orders.ORDERS);
 
         setId(id);
         setClientId(clientId);
         setRestaurantCode(restaurantCode);
+        setTotal(total);
         setCreatedAt(createdAt);
         resetTouchedOnNotNull();
     }

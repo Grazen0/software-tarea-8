@@ -1,0 +1,13 @@
+services:
+  restaurant_db:
+    image: "postgres:18"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: "123"
+  consumer_db:
+    image: "postgres:18"
+    ports:
+      - "5555:5432"
+    environment:
+      POSTGRES_PASSWORD: "123"
