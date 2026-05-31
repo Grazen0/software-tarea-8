@@ -6,8 +6,8 @@ services:
       - "5432:5432"
     environment:
       POSTGRES_PASSWORD: "123"
-  consumer_db:
-    container_name: "consumer-db"
+  rewards_db:
+    container_name: "rewards-db"
     image: "postgres:18"
     ports:
       - "5555:5432"
