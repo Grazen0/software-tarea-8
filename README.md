@@ -15,3 +15,5 @@ Luego de configurar archivos `.env` tanto en `restaurant` como en `rewards` (seg
 ```bash
 ./gradlew clean bootRun
 ```
+
+Esto levantará `restaurant` en el puerto 8080 y `rewards` en el puerto 8081.
