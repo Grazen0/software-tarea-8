@@ -1,0 +1,129 @@
+{
+  "info": {
+    "_postman_id": "4b1c353a-9fe6-474a-8fb3-c45912d21cd9",
+    "name": "Software tarea 8",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "43480626",
+    "_collection_link": "https://go.postman.co/collection/43480626-4b1c353a-9fe6-474a-8fb3-c45912d21cd9?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get all orders",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/orders",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "orders"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create order",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"clientId\": \"82d36ad3-3103-4026-a018-c51da4f38206\",\n    \"restaurantCode\": \"123\",\n    \"total\": 42,\n    \"cardId\": \"121434645\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/orders",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "orders"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get all client rewards",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{consumerUrl}}/rewards",
+          "host": [
+            "{{consumerUrl}}"
+          ],
+          "path": [
+            "rewards"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get client reward by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{consumerUrl}}/rewards/82d36ad3-3103-4026-a018-c51da4f38206",
+          "host": [
+            "{{consumerUrl}}"
+          ],
+          "path": [
+            "rewards",
+            "82d36ad3-3103-4026-a018-c51da4f38206"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update client rewards email",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"josedanielgrayson@proton.me\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{consumerUrl}}/rewards/82d36ad3-3103-4026-a018-c51da4f38206/email",
+          "host": [
+            "{{consumerUrl}}"
+          ],
+          "path": [
+            "rewards",
+            "82d36ad3-3103-4026-a018-c51da4f38206",
+            "email"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "consumerUrl",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}
