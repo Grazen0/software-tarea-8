@@ -10,6 +10,7 @@ class RestaurantApplicationTests {
 
 	@Test
 	void contextLoads() {
+		// This empty method tests that the application starts.
 	}
 
 }
